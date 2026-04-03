@@ -1,0 +1,30 @@
+{
+  "name": "simconnect-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP Server that exposes the SimConnect API of MSFS 2024 as MCP tools for Claude",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "simconnect-mcp-server": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "node-simconnect": "^4.0.0",
+    "msfs-simconnect-api-wrapper": "^4.7.0",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "@types/node": "^22.15.1",
+    "tsx": "^4.19.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}

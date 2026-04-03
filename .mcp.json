@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "simconnect": {
+      "command": "node",
+      "args": ["dist/index.js"]
+    }
+  }
+}
