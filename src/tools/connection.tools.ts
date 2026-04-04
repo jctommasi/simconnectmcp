@@ -1,5 +1,6 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { SimConnectService } from '../services/simconnect.service.js';
+import { WASimService } from '../services/wasim.service.js';
 import { SafetyService } from '../services/safety.service.js';
 import { SafetyProfile } from '../types/config.types.js';
 
@@ -24,12 +25,24 @@ export function registerConnectionTools(server: McpServer): void {
       try {
         const result = await simConnect.connect();
         if (result.connected) {
+          // Initialize WASimCommander (non-fatal if WASM module is absent)
+          const wasim = WASimService.getInstance();
+          try {
+            await wasim.initialize();
+          } catch {
+            // WASimCommander not available — not an error
+          }
+
           return {
             content: [
               {
                 type: 'text' as const,
                 text: JSON.stringify(
-                  { connected: true, simName: result.simName },
+                  {
+                    connected: true,
+                    simName: result.simName,
+                    wasimAvailable: wasim.isAvailable,
+                  },
                   null,
                   2
                 ),
