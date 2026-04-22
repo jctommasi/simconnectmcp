@@ -33,7 +33,7 @@ npm -v    # should print 9.x.x or higher
 ### Step 2 — Clone and build
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/jctommasi/simconnectmcp.git
 cd simconnect-mcp-server
 npm install
 npm run build
